@@ -1,0 +1,83 @@
+/*
+ * File: checkbox.scss
+ * Project: @vnnox/novaui
+ * Description: 复选框类
+ * Created: 2018-10-26 11:39
+ * Author: smohan (mengxw@novastar.tech)
+ * -----
+ * Last Modified: 2018-10-29 11:17
+ * Modified By: smohan (mengxw@novastar.tech>)
+ * -----
+ * Copyright 2018, NovaStar Tech Co., Ltd
+ */
+
+.nv-checkbox {
+  .nv-checkbox__icon {
+    width: 16px;
+    height: 16px;
+    border: 1px solid $color-line;
+    border-radius: 3px;
+    background-color: white;
+    z-index: 1;
+
+    &::before {
+      content: '';
+      width: 12px;
+      height: 10px;
+      top: 2px;
+      left: 1px;
+      position: absolute;
+      background: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2LjUxIDUuNSI+PHBvbHlnb24gcG9pbnRzPSIyLjA0IDUuNSA2LjUxIDAuODEgNS43MiAwIDIuMDYgMy44NiAwLjc4IDIuNTUgMCAzLjM3IDIuMDQgNS41IiBmaWxsPSIjMjU3Y2VmIi8+PC9zdmc+) no-repeat center;
+      background-size: cover;
+      transform: scale(0);
+      transform-origin: center;
+    }
+  }
+
+  > input[type="checkbox"] {
+    &:checked {
+      ~ .nv-checkbox__icon {
+        &::before {
+          transition: transform .15s cubic-bezier(.71, -.46, .88, .6);
+          transform: scale(1);
+        }
+      }
+    }
+
+    &:not([disabled]):not([checked]) {
+      ~ .nv-checkbox__icon:hover {
+        border-color: $color-line--dark;
+      }
+    }
+
+    &:disabled {
+      ~ .nv-checkbox__icon {
+        opacity: $check-icon-disabled-opacity;
+        cursor: not-allowed;
+      }
+
+      ~ .nv-checkbox__label {
+        color: $color-text--disabled;
+        cursor: not-allowed;
+      }
+    }
+  }
+
+  &.nv-checkbox--indeterminate {
+    .nv-checkbox__icon {
+      border-color: $color-primary !important;
+
+      &::before {
+        width: auto;
+        height: 2px;
+        background-color: $color-primary;
+        top: 50%;
+        left: 2px;
+        right: 2px;
+        margin-top: -1px;
+        background-image: none !important;
+        transform: none !important;
+      }
+    }
+  }
+}

@@ -1,3 +1,16 @@
+/*
+ * File: input.scss
+ * Project: @vnnox/novaui
+ * Description: 输入框类
+ * Created: 2018-10-26 11:39
+ * Author: smohan (mengxw@novastar.tech)
+ * -----
+ * Last Modified: 2018-10-29 11:17
+ * Modified By: smohan (mengxw@novastar.tech>)
+ * -----
+ * Copyright 2018, NovaStar Tech Co., Ltd
+ */
+
 @mixin Size($font-size, $height, $x) {
   $y: (strip-units($height) - strip-units($font-size * $input-line-height) -2 ) / 2 * 1px;
 
@@ -27,23 +40,30 @@
   outline: none;
   border-radius: $input-radius;
   background-color: white;
+  color: $color-text;
+
   @include Size($input-font-size, $input-height, $input-padding-x);
   @include Placeholder {
-    color: $color-placeholder;
+    color: $color-text--placeholder;
   }
 
-  &:not([disabled]):not(.nv-disabled):not(.nv-input--danger) {
+  &:not([disabled]):not(.nv-disabled):not(.nv-input--error) {
     transition: border-color .2s $transition-timing-function;
 
     &:hover,
     &:active,
-    &:focus {
-      border-color: $color-primary;
+    &:focus,
+    &.nv-focusin {
+      border-color: $color-primary--hover;
     }
   }
 
-  &.nv-input--danger {
-    border-color: $color-danger;
+  &.nv-input--error {
+    border-color: $color-error;
+  }
+
+  &.nv-input--success {
+    border-color: $color-success;
   }
 
   // 小尺寸
@@ -58,8 +78,8 @@
 
   &:disabled,
   &.nv-disabled {
-    border-color: $input-disabled-line;
-    background-color: $input-disabled-background;
+    border-color: $color-line--disabled;
+    background-color: $color-bg--disabled;
     color: $input-disabled-color;
     cursor: not-allowed;
     user-select: none;
@@ -68,4 +88,114 @@
 
 textarea.nv-input {
   height: auto;
+  min-height: 32px;
+}
+
+.nv-input-group {
+  display: flex;
+  align-items: center;
+
+  > * {
+    margin-left: -1px;
+  }
+
+  .nv-input-group__addon {
+    width: auto;
+    @extend .nv-btn;
+
+    padding-left: 10px;
+    padding-right: 10px;
+    cursor: default;
+    user-select: none;
+
+    &:hover, &:active, &:focus {
+      border-color: $color-line !important;
+      color: $color-text !important;
+    }
+  }
+
+  .nv-input {
+    flex: 1 1 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  > :not(:first-child):not(:last-child) {
+    border-radius: 0;
+  }
+
+  > :first-child:not(:last-child) {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  > :last-child:not(:first-child) {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+}
+
+// row
+.nv-input-row {
+  display: flex;
+  align-items: center;
+
+  > .nv-input-cell {
+    margin-left: 10px;
+
+    &:first-child {
+      margin-left: 0;
+    }
+
+    &.nv-fluid {
+      min-width: 1%;
+      width: auto;
+      flex: 1 1 auto;
+    }
+  }
+}
+
+.nv-input-suffix,
+.nv-input-prefix {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+
+  .nv-input {
+    width: 100%;
+  }
+
+  .nv-input__icon {
+    position: absolute;
+    height: 100%;
+    top: 0;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $color-text--placeholder;
+    padding: 0 6px;
+  }
+}
+
+.nv-input-suffix {
+  .nv-input {
+    padding-right: 32px;
+  }
+
+  .nv-input__icon {
+    right: 6px;
+  }
+}
+
+.nv-input-prefix {
+  .nv-input {
+    padding-left: 32px;
+  }
+
+  .nv-input__icon {
+    left: 6px;
+  }
 }

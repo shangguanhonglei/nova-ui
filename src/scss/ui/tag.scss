@@ -1,0 +1,108 @@
+.nv-tag {
+  display: inline-flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: center;
+  font-size: $btn-font-size;
+  height: $btn-height;
+  line-height: 20px;
+  max-width: 240px;
+  font-weight: normal;
+  border: 1px solid $color-line;
+  background-color: white;
+  color: $color-text;
+  user-select: none;
+  border-radius: $btn-radius;
+  padding-left: 12px;
+  padding-right: 12px;
+  position: relative;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  + .nv-tag {
+    margin-left: 10px;
+  }
+
+  .nv-tag__label {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .nv-tag__close {
+    min-width: 12px;
+    width: 12px;
+    height: 12px;
+    line-height: 1;
+    cursor: pointer;
+    color: inherit;
+    font-size: inherit;
+    margin-left: 10px;
+  }
+
+  &.nv-tag--info {
+    border-color: $color-info;
+    background-color: $color-info--lighten;
+    color: $color-info;
+  }
+
+  &.nv-tag--error {
+    border-color: $color-error;
+    background-color: $color-error--lighten;
+    color: $color-error;
+  }
+
+  &.nv-tag--success {
+    border-color: $color-success;
+    background-color: $color-success--lighten;
+    color: $color-success;
+  }
+
+  &.nv-tag--warning {
+    border-color: $color-warning;
+    background-color: $color-warning--lighten;
+    color: $color-warning;
+  }
+
+  // &.nv-tag--error {
+  //   border-color: $color-tag-error-line;
+  //   background-color: $color-tag-error-bg;
+  //   color: $color-tag-error-color;
+  // }
+
+  // &.nv-tag--small {
+  //   height: $btn-height-small;
+  //   padding-left: 4px;
+  //   padding-right: 4px;
+  // }
+
+  &.nv-tag--small,
+  &.nv-tag--tiny {
+    height: $btn-height-small;
+    padding-left: 4px;
+    padding-right: 4px;
+
+    .nv-tag__close {
+      font-size: 12px;
+    }
+  }
+
+  &.nv-tag--tiny {
+    height: $btn-height-tiny;
+  }
+
+  &.nv-pill {
+    border-radius: 200px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  &.nv-hover {
+    cursor: pointer;
+
+    &:hover {
+      opacity: .5;
+    }
+  }
+}

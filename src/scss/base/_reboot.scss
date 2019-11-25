@@ -1,3 +1,16 @@
+/*
+ * File: _reboot.scss
+ * Project: @vnnox/novaui
+ * Description: 样式重置类
+ * Created: 2018-10-25 03:57
+ * Author: smohan (mengxw@novastar.tech)
+ * -----
+ * Last Modified: 2018-10-29 11:14
+ * Modified By: smohan (mengxw@novastar.tech>)
+ * -----
+ * Copyright 2018, NovaStar Tech Co., Ltd
+ */
+
 *,
 *::before,
 *::after {
@@ -53,7 +66,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-weight: 500;
+  font-weight: 600;
   color: $color-title;
   line-height: 1.1;
   margin-top: 0;
@@ -62,7 +75,7 @@ h6 {
 
 strong,
 b {
-  font-weight: 500;
+  font-weight: 600;
 }
 
 i,

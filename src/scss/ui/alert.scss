@@ -1,0 +1,92 @@
+.nv-alert {
+  padding: 8px 12px;
+  font-size: $font-size-base;
+  border: 1px solid $color-base--alert-line;
+  background-color: $color-base--alert-bg;
+  color: $color-text--describe;
+  line-height: 18px;
+  min-width: 400px;
+  max-width: 100%;
+
+  + .nv-alert {
+    margin-top: 20px;
+  }
+
+  &.nv-alert--success {
+    border-color: $color-success;
+    background-color: $color-success--lighten;
+    color: $color-success;
+  }
+
+  &.nv-alert--error {
+    border-color: $color-error;
+    background-color: $color-error--lighten;
+    color: $color-error;
+  }
+
+  &.nv-alert--warning {
+    border-color: $color-warning;
+    background-color: $color-warning--lighten;
+    color: $color-warning;
+  }
+
+  &.nv-alert--info {
+    border-color: $color-info;
+    background-color: $color-info--lighten;
+    color: $color-info;
+  }
+
+  a,
+  a:hover {
+    color: inherit;
+    text-decoration: underline;
+  }
+
+  .nv-alert__inner {
+    display: flex;
+    flex-flow: row nowrap;
+    position: relative;
+
+    .nv-alert__icon {
+      min-width: 16px;
+      margin-right: 5px;
+      font-size: 16px;
+      top: 1px;
+      position: relative;
+    }
+
+    .nv-alert__content {
+      flex: 1 1 auto;
+      white-space: normal;
+    }
+
+    .nv-alert__close {
+      position: absolute;
+      border: none;
+      background-color: transparent;
+      padding: 0;
+      margin: 0;
+      outline: none;
+      font-size: 12px;
+      top: 1px;
+      right: -4px;
+      cursor: pointer;
+      color: $color-spin;
+      user-select: none;
+
+      i {
+        width: 1rem;
+        height: 1rem;
+        font-weight: bold;
+        text-align: center;
+        color: $color-spin;
+      }
+    }
+  }
+
+  &.has-close {
+    .nv-alert__content {
+      padding-right: 12px;
+    }
+  }
+}
