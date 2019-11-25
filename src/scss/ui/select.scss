@@ -1,0 +1,176 @@
+.nv-select {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  max-width: 100%;
+
+  &::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-bottom: 8px solid $color-spin;
+    border-left: 8px solid transparent;
+    right: 3px;
+    bottom: 3px;
+    z-index: 1;
+  }
+
+  &:not(.nv-disabled) {
+    cursor: pointer;
+  }
+
+  .nv-select__value {
+    width: 100%;
+    padding-right: 30px;
+  }
+
+  .nv-select__value:not([disabled]) {
+    cursor: pointer;
+    user-select: none;
+  }
+
+  &.nv-disabled {
+    cursor: not-allowed;
+
+    &::after {
+      opacity: .4;
+    }
+  }
+
+  .nv-select__clean {
+    position: absolute;
+    padding: 2px 5px;
+    top: 2px;
+    bottom: 2px;
+    right: 8px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    color: $color-spin;
+    font-weight: bold;
+
+    &:hover {
+      color: $color-primary;
+    }
+  }
+
+  &.show-clean:not(.nv-disabled) {
+    .nv-select__clean {
+      display: flex;
+    }
+  }
+}
+
+.nv-select-picker {
+  font-size: $font-size-base;
+  color: $color-text;
+  user-select: none;
+  padding: 8px 0;
+  overflow: hidden;
+
+  .select-options__wrap {
+    max-height: 260px;
+    overflow-y: auto;
+    position: relative;
+  }
+
+  .nv-select__options {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    position: relative;
+    z-index: 1;
+  }
+
+  .nv-select__option {
+    height: 30px;
+    line-height: 20px;
+    padding: 5px 12px;
+    position: relative;
+    cursor: pointer;
+    transition: all .2s ease-in;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    &:not(.nv-disabled):hover {
+      background-color: $color-select-hover;
+      color: $color-primary;
+    }
+
+    &.nv-hover {
+      background-color: $color-select-hover;
+    }
+
+    &.nv-actived {
+      color: $color-primary;
+      font-weight: bold;
+    }
+
+    &.nv-disabled {
+      color: $color-text-disabled;
+      cursor: not-allowed;
+      background-color: transparent;
+    }
+  }
+
+  // 分组
+  .nv-select__group {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    z-index: 1;
+
+    &:not(:last-of-type) {
+      padding-bottom: 24px;
+
+      &::after {
+        background-color: $color-line;
+        bottom: 12px;
+        content: '';
+        display: block;
+        height: 1px;
+        left: 12px;
+        position: absolute;
+        right: 12px;
+      }
+    }
+
+    .nv-select__title {
+      color: $color-placeholder;
+      font-size: 12px;
+      line-height: 30px;
+      margin: 0;
+      padding: 0 12px;
+    }
+  }
+
+  // 多选
+  &.select-picker--multiple {
+    .nv-select__option {
+      padding-right: 30px;
+
+      &::after {
+        @extend .icon-font;
+
+        content: '\e90a';
+        font-size: 12px;
+        line-height: 1;
+        margin-top: -6px;
+        opacity: 0;
+        position: absolute;
+        right: 12px;
+        top: 50%;
+        color: $color-primary;
+        font-weight: bold;
+      }
+
+      &.nv-actived::after {
+        opacity: 1;
+      }
+    }
+  }
+}

@@ -1,0 +1,52 @@
+.nv-hr {
+  background-color: $color-line;
+  border: none;
+  display: block;
+  height: 1px;
+  margin: 1rem auto;
+  padding: 0;
+  width: 100%;
+}
+
+.nv-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  background-color: rgba(#000, .5);
+}
+
+.nv-locked {
+  overflow: hidden !important;
+}
+
+.nv-hidden {
+  visibility: hidden !important;
+}
+
+.nv-show {
+  display: block !important;
+}
+
+.nv-hide {
+  display: none !important;
+}
+
+.nv-alpha-bg {
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAIAAADZF8uwAAAAGUlEQVQYV2M4gwH+YwCGIasIUwhT25BVBADtzYNYrHvv4gAAAABJRU5ErkJggg==);
+  background-repeat: repeat;
+}
+
+.nv-clearfix {
+  @include clearFix;
+}
+
+.nv-left {
+  float: left !important;
+}
+
+.nv-right {
+  float: right !important;
+}

@@ -1,0 +1,115 @@
+// 用于vue的包裹容器
+.nv-input-number--wrap {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+
+  + .nv-input-number--wrap {
+    margin-left: 20px;
+  }
+}
+
+.nv-input-number {
+  @extend .nv-input-number--wrap;
+
+  + .nv-input-number {
+    margin-left: 20px;
+  }
+
+  .nv-input {
+    padding-right: 32px;
+    width: 100%;
+  }
+
+  .nv-input-number__increase,
+  .nv-input-number__decrease {
+    user-select: none;
+    position: absolute;
+    height: 50%;
+    width: 24px;
+    right: 1px;
+    color: $color-spin;
+    display: flex;
+    align-items: center;
+    padding-left: 4px;
+
+    &::after {
+      @extend .icon-font;
+    }
+
+    &:hover {
+      color: $color-hint;
+    }
+
+    &.nv-disabled {
+      color: $color-spin-disabled;
+      cursor: not-allowed;
+    }
+  }
+
+  .nv-input-number__increase {
+    top: 1px;
+
+    &::after {
+      content: '\e90e';
+    }
+  }
+
+  .nv-input-number__decrease {
+    bottom: 1px;
+
+    &::after {
+      content: '\e90f';
+    }
+  }
+
+  &.nv-input-number--row {
+    .nv-input {
+      padding-left: 42px;
+      padding-right: 42px;
+    }
+
+    .nv-input-number__increase,
+    .nv-input-number__decrease {
+      top: 1px;
+      bottom: 1px;
+      height: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      padding: 0;
+      line-height: 1;
+      font-size: 12px;
+
+      &.nv-disabled {
+        background-color: $color-bg-disabled;
+      }
+    }
+
+    .nv-input-number__decrease {
+      left: 1px;
+      right: auto;
+      border-right: 1px solid $color-line;
+      border-top-left-radius: $input-radius;
+      border-bottom-left-radius: $input-radius;
+
+      &::after {
+        content: '\e900';
+      }
+    }
+
+    .nv-input-number__increase {
+      left: auto;
+      right: 1px;
+      border-left: 1px solid $color-line;
+      border-top-right-radius: $input-radius;
+      border-bottom-right-radius: $input-radius;
+
+      &::after {
+        content: '\e901';
+      }
+    }
+  }
+}

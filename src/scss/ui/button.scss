@@ -1,30 +1,21 @@
-@mixin SpreadStyle ($map) {
-  border-color: map-get($map: $map, $key: border);
-  color: map-get($map: $map, $key: color);
-  background-color: map-get($map: $map, $key: background);
-}
+/*
+ * File: button.scss
+ * Project: @vnnox/novaui
+ * Description: 按钮类
+ * Created: 2018-10-26 02:51
+ * Author: smohan (mengxw@novastar.tech)
+ * -----
+ * Last Modified: 2018-10-29 11:16
+ * Modified By: smohan (mengxw@novastar.tech>)
+ * -----
+ * Copyright 2018, NovaStar Tech Co., Ltd
+ */
 
-@mixin Style ($normal, $hover) {
-  @include SpreadStyle($normal);
-
-  &:not([disabled]):not(.nv-disabled) {
-    &:hover,
-    &:active {
-      @include SpreadStyle($hover);
-    }
-  }
-}
-
-@mixin Size ($height, $font-size, $padding-x) {
-  $y: (strip-units($height) - strip-units($font-size * $btn-line-height) - 2) / 2 * 1px;
-
-  height: $height;
-  font-size: $font-size;
-  padding: $y $padding-x;
-}
+@import '../mixins/button';
 
 // button
-.nv-btn {
+.nv-btn,
+.nv-check__btn {
   display: inline-flex;
   -webkit-appearance: none;
   align-items: center;
@@ -35,16 +26,29 @@
   white-space: nowrap;
   border-radius: $btn-radius;
   line-height: $btn-line-height;
-  transition: color .2s $transition-timing-function, background-color .2s $transition-timing-function, border-color .2s $transition-timing-function;
-  @include Size($btn-height, $btn-font-size, $btn-padding-x);
-  @include Style($btn-default, $btn-default-hover);
+  text-decoration: none;
+  position: relative;
+  @include ButtonSize($btn-height, $btn-font-size, $btn-padding-x);
+}
 
+.nv-btn {
+  transition: color .2s $transition-timing-function, background-color .2s $transition-timing-function, border-color .2s $transition-timing-function;
+  @include ButtonStyle($btn-default, $btn-default-hover);
+
+  // primary
   &.nv-btn--primary {
-    @include Style($btn-primary, $btn-primary-hover);
+    @include ButtonStyle($btn-primary, $btn-primary-hover);
   }
 
+  // small size
   &.nv-btn--small {
-    @include Size($btn-height-small, $btn-font-size, $btn-padding-x-small);
+    @include ButtonSize($btn-height-small, $btn-font-size, $btn-padding-x-small);
+  }
+
+  // 纯icon
+  &.nv-btn--icon-pure {
+    padding-left: 10px;
+    padding-right: 10px;
   }
 
   // 大圆角
@@ -58,10 +62,45 @@
     opacity: $btn-disabled-opacity;
     cursor: not-allowed;
   }
+
+  [class^="nv-icon-"], [class*=" nv-icon-"] {
+    margin: 0 5px;
+  }
+
+  > :first-child {
+    margin-left: 0;
+  }
+
+  > :last-child {
+    margin-right: 0;
+  }
+
+  &.nv-fluid {
+    width: 100%;
+  }
+
+  &.nv-btn--link,
+  &.nv-btn--text {
+    border: none;
+    background-color: transparent;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  &.nv-btn--link {
+    color: $color-primary !important;
+  }
+
+  &.nv-btn--text {
+    color: $color-text !important;
+  }
+}
+
+a.nv-btn:hover {
+  text-decoration: none;
 }
 
 // button group
-
 .nv-btns {
   display: inline-flex;
   font-size: 0;
@@ -72,6 +111,7 @@
   > .nv-btn {
     margin-left: 0;
     transition: none;
+    @include ButtonStyle(false, $btn-group-hover);
 
     + .nv-btn {
       margin-left: -1px !important;
@@ -91,7 +131,8 @@
       border-bottom-left-radius: 0;
     }
 
-    &:hover, &:active {
+    &:not([disabled]):not(.nv-actived):active,
+    &:not([disabled]):not(.nv-actived):hover {
       position: relative;
       z-index: 1;
     }
@@ -99,26 +140,16 @@
     &.nv-actived {
       position: relative;
       z-index: 2;
-    }
-
-    @include Style($btn-default, $btn-default-hover);
-
-    &:not([disabled]):not(.nv-disabled) {
-      &:hover,
-      &:active,
-      &.nv-actived {
-        @include SpreadStyle($btn-default-group-hover);
-      }
+      @include ButtonSpreadStyle($btn-group-actived);
     }
   }
 
   &.nv-btns--primary {
-    > .nv-btn {
-      &:not([disabled]):not(.nv-disabled) {
-        &:active,
-        &.nv-actived {
-          @include SpreadStyle($btn-primary);
-        }
+    > .nv-btn.nv-actived {
+      @include ButtonSpreadStyle($btn-primary);
+
+      + .nv-btn.nv-actived {
+        box-shadow: -1px 0 0 0 $color-btn-hover-bg;
       }
     }
   }
